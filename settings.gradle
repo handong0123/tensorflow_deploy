@@ -1,0 +1,5 @@
+rootProject.name = 'tensorflow_serving'
+include 'tensorflow_common'
+include 'tensorflow_provider'
+include 'tensorflow_session'
+
