@@ -4,7 +4,6 @@
 Encapsulate and optimize tensorflow for java deployment of models.
 
 
-
 #### Characteristics
 
 1. Multi-threaded load graphs to increase utilization and improve predictive performance
@@ -15,9 +14,7 @@ Encapsulate and optimize tensorflow for java deployment of models.
 
 4. Provide data processing, such as loading char-id mapping, getting text id, full-width half-width, etc.
 
-   ​
-
-
+   
 
 #### schedule
 
