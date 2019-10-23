@@ -1,6 +1,7 @@
 package pers.handong.tensorflow.provider;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.handong.tensorflow.session.entity.ModelInput;
@@ -22,6 +23,7 @@ import java.util.concurrent.*;
 public class TensorflowProvider {
     private static final Logger LOG = LoggerFactory.getLogger(TensorflowProvider.class);
 
+    private static final String DEFAULT_GPU_ID = "-1";
     private static final int DEFAULT_TIMEOUT = 300000;
     private static final int DEFAULT_QUEUE_SIZE = 5000;
     private int timeout;
@@ -69,11 +71,12 @@ public class TensorflowProvider {
         this.tensorflowProviderThreads = new ArrayList<>();
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("tensorflow-provider-pool-%d").build();
         this.executorService = new ThreadPoolExecutor(10, 20, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1), namedThreadFactory);
-        String[] gpuIds = null == gpuIdStr ? null : gpuIdStr.split(",");
+        String[] gpuIds = StringUtils.isBlank(gpuIdStr) ? new String[]{} : gpuIdStr.split(",");
+        boolean cpu = 0 == gpuIds.length;
         threadNum = threadNum <= 0 ? 3 : threadNum;
-        threadNum = null == gpuIds ? threadNum : gpuIds.length;
+        threadNum = cpu ? threadNum : gpuIds.length;
         for (int i = 0; i < threadNum; i++) {
-            String gpuId = null == gpuIds ? "-1" : gpuIds[i];
+            String gpuId = cpu ? DEFAULT_GPU_ID : gpuIds[i];
             TensorflowModelService tensorflowModelService = new TensorflowModelServiceImpl(modelFile, modelPath, gpuId);
             TensorflowProviderThread tensorflowProviderThread = new TensorflowProviderThread(tensorflowModelService, timeout);
             this.executorService.execute(tensorflowProviderThread);

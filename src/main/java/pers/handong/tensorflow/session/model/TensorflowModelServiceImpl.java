@@ -1,6 +1,7 @@
 package pers.handong.tensorflow.session.model;
 
 import com.google.common.primitives.Longs;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tensorflow.Graph;
@@ -64,7 +65,7 @@ public class TensorflowModelServiceImpl implements TensorflowModelService {
         if (DEFAULT_GPU_ID.equals(this.gpuId)) {
             graph.importGraphDef(graphDef);
             this.session = new Session(graph);
-            LOG.info("CPU:model init success,{}/{}", this.modelPath, this.modelFile);
+            LOG.info("CPU:model init success,{}", Paths.get(this.modelPath, this.modelFile));
         } else {
             GPUOptions gpuOptions = GPUOptions.newBuilder()
                     .setVisibleDeviceList(this.gpuId)
@@ -76,7 +77,7 @@ public class TensorflowModelServiceImpl implements TensorflowModelService {
                     .setAllowSoftPlacement(true)
                     .build();
             this.session = new Session(graph, configProto.toByteArray());
-            LOG.info("GPU:model init success,{}/{}", this.modelPath, this.modelFile);
+            LOG.info("GPU:model init success,{}", Paths.get(this.modelPath, this.modelFile));
         }
     }
 
