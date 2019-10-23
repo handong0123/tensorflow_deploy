@@ -7,8 +7,22 @@ package pers.handong.tensorflow.session.entity;
  * @author handong
  */
 public class ModelParam {
+    /**
+     * Tensor name
+     */
     private String placeHolderName;
+    /**
+     * array with no boxed
+     */
     private Object data;
+
+    public ModelParam() {
+    }
+
+    public ModelParam(String placeHolderName, Object data) {
+        this.placeHolderName = placeHolderName;
+        this.data = data;
+    }
 
     public String getPlaceHolderName() {
         return placeHolderName;
