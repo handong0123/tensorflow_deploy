@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author handong
  */
-public class ModelOutPut {
+public class ModelOutput {
 
     private Map<String, Object> output = new HashMap<>();
 

@@ -1,7 +1,7 @@
 package pers.handong.tensorflow.session.model;
 
 import pers.handong.tensorflow.session.entity.ModelInput;
-import pers.handong.tensorflow.session.entity.ModelOutPut;
+import pers.handong.tensorflow.session.entity.ModelOutput;
 
 /**
  * Tensorflow model service
@@ -15,7 +15,7 @@ public interface TensorflowModelService {
      * @param modelInput model input
      * @return model output
      */
-    ModelOutPut predict(ModelInput modelInput);
+    ModelOutput predict(ModelInput modelInput);
 
     /**
      * model reload

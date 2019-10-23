@@ -4,7 +4,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.handong.tensorflow.session.entity.ModelInput;
-import pers.handong.tensorflow.session.entity.ModelOutPut;
+import pers.handong.tensorflow.session.entity.ModelOutput;
 import pers.handong.tensorflow.session.model.TensorflowModelService;
 import pers.handong.tensorflow.session.model.TensorflowModelServiceImpl;
 
@@ -27,7 +27,7 @@ public class TensorflowProvider {
     private int timeout;
     private List<TensorflowProviderThread> tensorflowProviderThreads;
     private final LinkedBlockingQueue<ModelInput> queue;
-    private final ConcurrentHashMap<Object, ModelOutPut> result;
+    private final ConcurrentHashMap<Object, ModelOutput> result;
     private ExecutorService executorService;
 
     /**
@@ -99,8 +99,8 @@ public class TensorflowProvider {
      * @return model output
      * @throws InterruptedException Response interrupt
      */
-    private ModelOutPut getMessage(Object messageId) throws InterruptedException {
-        ModelOutPut outPut;
+    private ModelOutput getMessage(Object messageId) throws InterruptedException {
+        ModelOutput outPut;
         long startTime = System.currentTimeMillis();
         while (true) {
             outPut = this.result.get(messageId);
@@ -124,7 +124,7 @@ public class TensorflowProvider {
      * @return model output
      * @throws InterruptedException Response interrupt
      */
-    public ModelOutPut predict(ModelInput input) throws InterruptedException {
+    public ModelOutput predict(ModelInput input) throws InterruptedException {
         if (!this.putMessage(input)) {
             LOG.error("Put message failed, maybe queue is full");
             return null;
@@ -159,7 +159,7 @@ public class TensorflowProvider {
                     while (true) {
                         ModelInput input = TensorflowProvider.this.queue.take();
                         long startTime = System.currentTimeMillis();
-                        ModelOutPut outPut = this.modelService.predict(input);
+                        ModelOutput outPut = this.modelService.predict(input);
                         if (null == outPut || System.currentTimeMillis() - startTime > this.timeout) {
                             continue;
                         }

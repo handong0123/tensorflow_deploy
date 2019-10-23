@@ -1,6 +1,5 @@
 package pers.handong.tensorflow.session.model;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.primitives.Longs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +16,7 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Tensorflow model service achieve
@@ -84,11 +81,11 @@ public class TensorflowModelServiceImpl implements TensorflowModelService {
     }
 
     @Override
-    public ModelOutPut predict(ModelInput modelInput) {
+    public ModelOutput predict(ModelInput modelInput) {
         if (null == modelInput) {
             return null;
         }
-        ModelOutPut outPut = new ModelOutPut();
+        ModelOutput outPut = new ModelOutput();
         long startTime = System.currentTimeMillis();
         List<Tensor> inputTensorList = new ArrayList<>();
         List<Tensor<?>> outTensorList = new ArrayList<>();
