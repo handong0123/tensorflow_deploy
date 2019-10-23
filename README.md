@@ -16,11 +16,11 @@ Encapsulate and optimize tensorflow for java deployment of models.
 
    
 
-#### schedule
+#### Schedule
 
-Completed preliminary development, not yet tested
+Complete initial development and complete the test
 
 
 
-If you have a good idea, please contact handong970123@gmail.com
+If you have a good idea, please contact handong970123@gmail.com or create issus
 
