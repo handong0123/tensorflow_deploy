@@ -46,5 +46,13 @@ float[][][] scores = (float[][][]) output.getOutput("project/Reshape:0");
 
 数据处理工具：
 
-如果你有好的想法或建议，可以提issue，也可以联系handong970123@gmail.com，项目会一直维护更新，感谢你的star。
+```
+// 提供大小写转换、全角转半角、加载char-id映射、获取char特征、填充列表等方法
+TensorflowDataService dataService = new TensorflowDataServiceImpl();
+
+```
+
+
+
+#### 如果你有好的想法或建议，可以提issue，也可以联系handong970123@gmail.com，项目会一直维护更新，感谢你的star。
 
