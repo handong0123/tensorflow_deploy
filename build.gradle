@@ -9,7 +9,7 @@ allprojects {
     group = 'pers.hd'
 }
 ext {
-    myArtifactId = 'tensorflow-serving'
+    myArtifactId = 'tensorflow-deploy'
 }
 
 repositories {
@@ -49,14 +49,14 @@ dependencies {
 }
 
 install {
-    repositories.maveninstaller {
+    repositories.mavenInstaller {
         pom.groupId = "$project.group"
         pom.artifactId = myArtifactId
         pom.version = "$project.version"
     }
 }
 
-tasks.withType(org.gradle.api.tasks.compile.JavaCommpile) {
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
