@@ -40,7 +40,6 @@ dependencies {
     compile group: 'org.tensorflow', name: 'proto', version: '1.14.0'
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.1'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '1.4.0.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.4.0.RELEASE'
     compile group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
