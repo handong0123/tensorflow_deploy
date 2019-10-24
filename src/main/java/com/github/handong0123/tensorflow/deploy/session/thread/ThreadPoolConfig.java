@@ -1,4 +1,4 @@
-package pers.handong.tensorflow.session.thread;
+package com.github.handong0123.tensorflow.deploy.session.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.context.annotation.Bean;

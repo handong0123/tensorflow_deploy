@@ -1,6 +1,6 @@
-package pers.handong.tensorflow.session.model;
+package com.github.handong0123.tensorflow.deploy.session.model;
 
-import pers.handong.tensorflow.session.entity.PreProcessModeType;
+import com.github.handong0123.tensorflow.deploy.session.entity.PreProcessModeType;
 
 import java.util.List;
 import java.util.Map;

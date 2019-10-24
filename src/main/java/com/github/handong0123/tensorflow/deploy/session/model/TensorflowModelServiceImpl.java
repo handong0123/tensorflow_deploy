@@ -1,7 +1,10 @@
-package pers.handong.tensorflow.session.model;
+package com.github.handong0123.tensorflow.deploy.session.model;
 
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelDataType;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelInput;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelOutput;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelParam;
 import com.google.common.primitives.Longs;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tensorflow.Graph;
@@ -9,7 +12,6 @@ import org.tensorflow.Session;
 import org.tensorflow.Tensor;
 import org.tensorflow.framework.ConfigProto;
 import org.tensorflow.framework.GPUOptions;
-import pers.handong.tensorflow.session.entity.*;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;

@@ -1,7 +1,7 @@
-package pers.handong.tensorflow.session.model;
+package com.github.handong0123.tensorflow.deploy.session.model;
 
-import pers.handong.tensorflow.session.entity.ModelInput;
-import pers.handong.tensorflow.session.entity.ModelOutput;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelInput;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelOutput;
 
 /**
  * Tensorflow model service

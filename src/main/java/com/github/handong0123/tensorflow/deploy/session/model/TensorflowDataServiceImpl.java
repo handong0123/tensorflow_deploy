@@ -1,8 +1,8 @@
-package pers.handong.tensorflow.session.model;
+package com.github.handong0123.tensorflow.deploy.session.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.handong.tensorflow.session.entity.PreProcessModeType;
+import com.github.handong0123.tensorflow.deploy.session.entity.PreProcessModeType;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

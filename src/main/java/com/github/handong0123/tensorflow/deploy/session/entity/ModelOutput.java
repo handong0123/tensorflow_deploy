@@ -1,4 +1,4 @@
-package pers.handong.tensorflow.session.entity;
+package com.github.handong0123.tensorflow.deploy.session.entity;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -9,7 +9,7 @@ allprojects {
     group = 'com.github.handong0123'
 }
 ext {
-    myArtifactId = 'tensorflow-deploy'
+    myArtifactId = 'tensorflow_deploy'
 }
 
 repositories {
