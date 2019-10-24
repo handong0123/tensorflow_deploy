@@ -94,7 +94,19 @@ public class TensorflowModelServiceImpl implements TensorflowModelService {
             Session.Runner runner = this.session.runner();
             for (ModelParam placeHolder : modelInput.getPlaceHolderInput()) {
                 Object data = placeHolder.getData();
-                Tensor tensorInput = Tensor.create(data);
+                Tensor tensorInput;
+                if (data instanceof String) {
+                    tensorInput = Tensor.create(new byte[][]{((String) data).getBytes()});
+                } else if (data instanceof String[]) {
+                    String[] originData = (String[]) data;
+                    byte[][] res = new byte[originData.length][];
+                    for (int i = 0; i < originData.length; i++) {
+                        res[i] = originData[i].getBytes();
+                    }
+                    tensorInput = Tensor.create(res);
+                } else {
+                    tensorInput = Tensor.create(data);
+                }
                 runner = runner.feed(placeHolder.getPlaceHolderName(), tensorInput);
                 inputTensorList.add(tensorInput);
             }

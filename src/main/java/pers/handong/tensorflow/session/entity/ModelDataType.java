@@ -9,27 +9,31 @@ public enum ModelDataType {
     /**
      * int
      */
-    DATA_INT32(Integer.TYPE, 0),
+    INT32(Integer.TYPE, 0),
     /**
      * long
      */
-    DATA_INT64(Long.TYPE, 1),
+    INT64(Long.TYPE, 1),
     /**
      * float
      */
-    DATA_FLOAT(Float.TYPE, 2),
+    FLOAT(Float.TYPE, 2),
     /**
      * double
      */
-    DATA_DOUBLE(Double.TYPE, 3),
+    DOUBLE(Double.TYPE, 3),
     /**
      * boolean
      */
-    DATA_BOOLEAN(Boolean.TYPE, 4),
+    BOOLEAN(Boolean.TYPE, 4),
+    /**
+     * char
+     */
+    CHARACTER(Character.TYPE, 5),
     /**
      * string
      */
-    DATA_CHARACTER(Character.TYPE, 5);
+    STRING(String.class, 6);
 
     private Class<?> type;
     private int value;

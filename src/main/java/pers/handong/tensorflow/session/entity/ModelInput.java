@@ -34,8 +34,8 @@ public class ModelInput {
         return placeHolderInput;
     }
 
-    public void setPlaceHolderInput(ArrayList<ModelParam> placeHolderInput) {
-        this.placeHolderInput = placeHolderInput;
+    public void addPlaceHolderInput(String placeHolder,Object data) {
+        this.placeHolderInput.add(new ModelParam(placeHolder,data));
     }
 
     public Map<String, ModelDataType> getExpectedOutput() {
