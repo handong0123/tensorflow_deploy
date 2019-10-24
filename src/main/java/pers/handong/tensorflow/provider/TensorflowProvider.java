@@ -26,31 +26,23 @@ public class TensorflowProvider {
     private static final String DEFAULT_GPU_ID = "-1";
     private static final int DEFAULT_TIMEOUT = 300000;
     private static final int DEFAULT_QUEUE_SIZE = 5000;
+    private static final int DEFAULT_THREAD_NUM = 3;
     private int timeout;
     private List<TensorflowProviderThread> tensorflowProviderThreads;
     private final LinkedBlockingQueue<ModelInput> queue;
     private final ConcurrentHashMap<Object, ModelOutput> result;
     private ExecutorService executorService;
 
-    /**
-     * TensorflowProvider Construction method
-     *
-     * @param threadNum Load {threadNum} sessions
-     * @param modelFile Model name
-     * @param modelPath Model directory
-     */
+
+    public TensorflowProvider(String modelFile, String modelPath) {
+        this(DEFAULT_THREAD_NUM, modelFile, modelPath, null);
+    }
+
+
     public TensorflowProvider(int threadNum, String modelFile, String modelPath) {
         this(threadNum, modelFile, modelPath, null);
     }
 
-    /**
-     * TensorflowProvider Construction method
-     *
-     * @param threadNum Load {threadNum} sessions
-     * @param modelFile Model name
-     * @param modelPath Model directory
-     * @param gpuIdStr  Gpu number, split by ','
-     */
     public TensorflowProvider(int threadNum, String modelFile, String modelPath, String gpuIdStr) {
         this(threadNum, modelFile, modelPath, gpuIdStr, DEFAULT_TIMEOUT);
     }
@@ -73,7 +65,7 @@ public class TensorflowProvider {
         this.executorService = new ThreadPoolExecutor(10, 20, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1), namedThreadFactory);
         String[] gpuIds = StringUtils.isBlank(gpuIdStr) ? new String[]{} : gpuIdStr.split(",");
         boolean cpu = 0 == gpuIds.length;
-        threadNum = threadNum <= 0 ? 3 : threadNum;
+        threadNum = threadNum <= 0 ? DEFAULT_THREAD_NUM : threadNum;
         threadNum = cpu ? threadNum : gpuIds.length;
         for (int i = 0; i < threadNum; i++) {
             String gpuId = cpu ? DEFAULT_GPU_ID : gpuIds[i];
