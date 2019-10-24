@@ -6,7 +6,7 @@ targetCompatibility = 1.8
 
 version '1.0.0'
 allprojects {
-    group = 'pers.hd'
+    group = 'com.github.handong0123'
 }
 ext {
     myArtifactId = 'tensorflow-deploy'

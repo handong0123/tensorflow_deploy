@@ -1,13 +1,13 @@
-package pers.handong.tensorflow.provider;
+package com.github.handong0123.tensorflow.deploy.provider;
 
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelInput;
+import com.github.handong0123.tensorflow.deploy.session.model.TensorflowModelService;
+import com.github.handong0123.tensorflow.deploy.session.model.TensorflowModelServiceImpl;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.handong.tensorflow.session.entity.ModelInput;
-import pers.handong.tensorflow.session.entity.ModelOutput;
-import pers.handong.tensorflow.session.model.TensorflowModelService;
-import pers.handong.tensorflow.session.model.TensorflowModelServiceImpl;
+import com.github.handong0123.tensorflow.deploy.session.entity.ModelOutput;
 
 import java.util.ArrayList;
 import java.util.List;
