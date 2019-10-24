@@ -29,11 +29,7 @@ public enum ModelDataType {
     /**
      * char
      */
-    CHARACTER(Character.TYPE, 5),
-    /**
-     * string
-     */
-    STRING(String.class, 6);
+    CHARACTER(Character.TYPE, 5);
 
     private Class<?> type;
     private int value;
