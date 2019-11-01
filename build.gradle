@@ -1,35 +1,31 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
+apply from: rootDir.canonicalPath + '/.gradle/publish.gradle'
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version '1.0.0'
-allprojects {
-    group = 'com.github.handong0123'
+group 'com.github.handong0123'
+version '1.14.0'
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    [compileJava]*.options*.encoding = 'UTF-8'
 }
-ext {
-    myArtifactId = 'tensorflow_deploy'
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    [compileTestJava]*.options*.encoding = 'UTF-8'
+}
+test {
+    exclude '**/*.class'
 }
 
 repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     mavenCentral()
-}
-
-javadoc {
-    options.encoding = "utf-8"
-    options.charSet = "utf-8"
-}
-
-task javaDocJar(type: Jar, dependsOn: "javadoc") {
-    classifier = "javadoc"
-    from "build/docs/javadoc"
-}
-
-task sourcesJar(type: Jar) {
-    classifier = "sources"
-    from sourceSets.main.allSource
 }
 
 dependencies {
@@ -43,23 +39,81 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.4.0.RELEASE'
     compile group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
-    compile group: 'org.apache.commons', name:'commons-lang3', version: '3.7'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.groupId = "$project.group"
-        pom.artifactId = myArtifactId
-        pom.version = "$project.version"
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'tensorflow-deploy-cpu'
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = "tensorflow-deploy"
+                description = "tensorflow deploy for java"
+                url = "https://github.com/handong0123/tensorflow_deploy"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "handong0123"
+                        name = "handong"
+                        email = "handong970123@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/handong0123/tensorflow_deploy.git"
+                    developerConnection = "scm:git:https://github.com/handong0123/tensorflow_deploy.git"
+                    url = "https://github.com/handong0123/tensorflow_deploy"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+signing {
+    sign publishing.publications.mavenJava
 }
 
-artifacts {
-    archives jar
-    archives sourcesJar
+javadoc {
+    description = "Generates project-level javadoc for use in -javadoc jar"
+    options.memberLevel = JavadocMemberLevel.PROTECTED
+    options.author = true
+    options.version = true
+    options.header = project.name
+    options.addStringOption('Xdoclint:none', '-quiet')
+    logging.captureStandardError LogLevel.INFO
+    logging.captureStandardOutput LogLevel.INFO
+    options.encoding = "UTF-8"
+    options.charSet = 'UTF-8'
 }
+
