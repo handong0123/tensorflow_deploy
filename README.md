@@ -20,6 +20,22 @@
 
 ##### Quick Start
 
+引入依赖：
+```java
+  // CPU
+  <dependency>
+  <groupId>com.github.handong0123</groupId>
+  <artifactId>tensorflow-deploy-cpu</artifactId>
+  <version>1.14.0</version>
+  </dependency>
+  // GPU    
+  <dependency>
+  <groupId>com.github.handong0123</groupId>
+  <artifactId>tensorflow-deploy-gpu</artifactId>
+  <version>1.14.0</version>
+  </dependency>
+```
+
 构造：
 
 ```java
