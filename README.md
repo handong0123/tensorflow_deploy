@@ -50,7 +50,7 @@ TensorflowProvider tfp = new TensorflowProvider(3,"frozen.pb","/home/demo","0,1,
 
 ```java
 // 构造模型输入
-ModelInut input = new ModelInput();
+ModelInput input = new ModelInput();
 // 输出的tensor名和数据类型
 input.addExceptedOutput("project/Reshape:0",ModelDataType.FLOAT);
 // 输入的tensor名和数据数组（未装箱）
