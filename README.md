@@ -69,6 +69,6 @@ TensorflowDataService dataService = new TensorflowDataServiceImpl();
 ```
 
 
-#### 此项目已用于本人公司的ToB业务
+
 #### 如果你有好的想法或建议，可以提issue，也可以联系handong970123@gmail.com，项目会一直维护更新，感谢你的star。
 
