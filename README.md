@@ -2,7 +2,7 @@
 #### 简介
 
 简化与优化tensorflow模型的Java部署，并提供特征抽取相关工具
-
+注：tensorflow1.14官方jar存在bug，请参照https://blog.csdn.net/handong01027/article/details/101371739进行修改
 
 
 
